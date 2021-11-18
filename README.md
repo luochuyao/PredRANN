@@ -23,7 +23,7 @@ The preprocess method and data root path can be modified in the data/data_iterat
 # Prediction samples
 5 frames are predicted given the last 10 frames.
 
-![Prediction vislazation](https://github.com/luochuyao/PredRANN/blob/master/radar_res.png)
+![Prediction vislazation](https://github.com/luochuyao/PredRANN/tree/master/data/res.png)
 
 Besides, we will offer some prediction results of models including PredRANN, PredRANN-L, and PredRANN-T as soon as possible.
 
