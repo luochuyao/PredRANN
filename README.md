@@ -17,13 +17,13 @@ To train the proposed model, it directly runs the CIKM_predrann.py
 
 You might want to change the parameter and setting, you can change the details of variable ‘args’ in each files for each model
 
-The preprocess method and data root path can be modified in the data/data_iterator.py file
+The preprocess method and data root path can be modified in the data/CIKM/data_iterator.py file
 
 
 # Prediction samples
 5 frames are predicted given the last 10 frames.
 
-![Prediction vislazation](https://github.com/luochuyao/PredRANN/tree/master/data/res.png)
+![Prediction vislazation](https://github.com/luochuyao/PredRANN/tree/master/data/res.pdf)
 
 Besides, we will offer some prediction results of models including PredRANN, PredRANN-L, and PredRANN-T as soon as possible.
 
