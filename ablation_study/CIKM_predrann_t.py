@@ -270,23 +270,23 @@ def wrapper_train(model):
                 break
 
 
-# if os.path.exists(args.save_dir):
-#     shutil.rmtree(args.save_dir)
-# os.makedirs(args.save_dir)
-#
-# if os.path.exists(args.gen_frm_dir):
-#     shutil.rmtree(args.gen_frm_dir)
-# os.makedirs(args.gen_frm_dir)
+if os.path.exists(args.save_dir):
+    shutil.rmtree(args.save_dir)
+os.makedirs(args.save_dir)
+
+if os.path.exists(args.gen_frm_dir):
+    shutil.rmtree(args.gen_frm_dir)
+os.makedirs(args.gen_frm_dir)
 #
 # gpu_list = np.asarray(os.environ.get('CUDA_VISIBLE_DEVICES', '-1').split(','), dtype=np.int32)
 # args.n_gpu = len(gpu_list)
 # print('Initializing models')
 
 model = Model(args)
-model.load()
-print("the test loss is:",str(wrapper_test(model)))
+# model.load()
+# print("the test loss is:",str(wrapper_test(model)))
 
-# if args.is_training:
-#    wrapper_train(model)
-# else:
-#    wrapper_test(model)
+if args.is_training:
+   wrapper_train(model)
+else:
+   wrapper_test(model)

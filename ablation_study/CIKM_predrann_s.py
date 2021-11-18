@@ -164,6 +164,7 @@ def wrapper_test(model,is_save=True):
     output_length = args.total_length - args.input_length
     with torch.no_grad():
         for i_batch, batch_data in enumerate(test_loader):
+
             ims = batch_data[0].numpy()
             tars = ims[:, -output_length:]
             cur_fold = batch_data[1]
@@ -238,6 +239,7 @@ def wrapper_train(model):
     best_iter = None
     for itr in range(1, args.max_iterations + 1):
         for i_batch, batch_data in enumerate(train_loader):
+
             ims = batch_data.numpy()
             ims = padding_CIKM_data(ims)
             ims = preprocess.reshape_patch(ims, args.patch_size)
@@ -270,23 +272,23 @@ def wrapper_train(model):
                 break
 
 
-# if os.path.exists(args.save_dir):
-#     shutil.rmtree(args.save_dir)
-# os.makedirs(args.save_dir)
-#
-# if os.path.exists(args.gen_frm_dir):
-#     shutil.rmtree(args.gen_frm_dir)
-# os.makedirs(args.gen_frm_dir)
-#
+if os.path.exists(args.save_dir):
+    shutil.rmtree(args.save_dir)
+os.makedirs(args.save_dir)
+
+if os.path.exists(args.gen_frm_dir):
+    shutil.rmtree(args.gen_frm_dir)
+os.makedirs(args.gen_frm_dir)
+
 # gpu_list = np.asarray(os.environ.get('CUDA_VISIBLE_DEVICES', '-1').split(','), dtype=np.int32)
 # args.n_gpu = len(gpu_list)
 # print('Initializing models')
 
 model = Model(args)
-model.load()
+# model.load()
 print("the test loss is:",str(wrapper_test(model)))
 
-# if args.is_training:
-#    wrapper_train(model)
-# else:
-#    wrapper_test(model)
+if args.is_training:
+   wrapper_train(model)
+else:
+   wrapper_test(model)

@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from core.layers.CausalLSTMCell import *
 from core.layers.TransformerCell import *
 from core.layers.SpatioTemporalLSTMCell import *
 
@@ -77,42 +76,34 @@ class PredRANN(nn.Module):
         self.input_length = args.input_length
         self.output_length = args.total_length-args.input_length
         self.width = args.img_width//args.patch_size
-        self.rnn1 = CausalLSTMCell(
+        self.rnn1 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
 
-        self.rnn2 = CausalLSTMCell(
+        self.rnn2 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
-        self.rnn3 = CausalLSTMCell(
+        self.rnn3 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
-        self.rnn4 = CausalLSTMCell(
+        self.rnn4 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
@@ -228,42 +219,34 @@ class PredRANN_T(nn.Module):
         self.input_length = args.input_length
         self.output_length = args.total_length-args.input_length
         self.width = args.img_width//args.patch_size
-        self.rnn1 = CausalLSTMCell(
+        self.rnn1 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
 
-        self.rnn2 = CausalLSTMCell(
+        self.rnn2 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
-        self.rnn3 = CausalLSTMCell(
+        self.rnn3 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
-        self.rnn4 = CausalLSTMCell(
+        self.rnn4 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
@@ -372,42 +355,34 @@ class PredRANN_S(nn.Module):
         self.output_length = args.total_length-args.input_length
         self.width = args.img_width//args.patch_size
 
-        self.rnn1 = CausalLSTMCell(
+        self.rnn1 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
 
-        self.rnn2 = CausalLSTMCell(
+        self.rnn2 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
-        self.rnn3 = CausalLSTMCell(
+        self.rnn3 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,
             layer_norm=True
         )
-        self.rnn4 = CausalLSTMCell(
+        self.rnn4 = SpatioTemporalLSTMCell(
             in_channel=64,
-            num_hidden_in=64,
             num_hidden=64,
-            height=self.width,
             width=self.width,
             filter_size=3,
             stride=1,

@@ -10,7 +10,7 @@ from utils import preprocess
 from core import trainer
 import cv2
 import math
-
+from datetime import datetime
 # -----------------------------------------------------------------------------
 parser = argparse.ArgumentParser(description='PyTorch video prediction model - PredRANN')
 
@@ -163,6 +163,7 @@ def wrapper_test(model,is_save=True):
          args.patch_size ** 2 * args.img_channel))
     output_length = args.total_length - args.input_length
     with torch.no_grad():
+        a = datetime.now()
         for i_batch, batch_data in enumerate(test_loader):
             ims = batch_data[0].numpy()
             tars = ims[:, -output_length:]
@@ -191,6 +192,8 @@ def wrapper_test(model,is_save=True):
                         cur_img = cur_batch_data[t]
                         cv2.imwrite(cur_save_path, cur_img)
 
+        b = datetime.now()
+        print('Cost ' + str((b - a).total_seconds() / len(test_loader)) + 's')
 
     print('test loss is:',str(loss/count))
     return loss / count
@@ -270,23 +273,23 @@ def wrapper_train(model):
                 break
 
 
-# if os.path.exists(args.save_dir):
-#     shutil.rmtree(args.save_dir)
-# os.makedirs(args.save_dir)
-#
-# if os.path.exists(args.gen_frm_dir):
-#     shutil.rmtree(args.gen_frm_dir)
-# os.makedirs(args.gen_frm_dir)
+if os.path.exists(args.save_dir):
+    shutil.rmtree(args.save_dir)
+os.makedirs(args.save_dir)
+
+if os.path.exists(args.gen_frm_dir):
+    shutil.rmtree(args.gen_frm_dir)
+os.makedirs(args.gen_frm_dir)
 #
 # gpu_list = np.asarray(os.environ.get('CUDA_VISIBLE_DEVICES', '-1').split(','), dtype=np.int32)
 # args.n_gpu = len(gpu_list)
 # print('Initializing models')
 
 model = Model(args)
-model.load()
-print("the test loss is:",str(wrapper_test(model)))
+# model.load()
+# print("the test loss is:",str(wrapper_test(model,False)))
 
-# if args.is_training:
-#    wrapper_train(model)
-# else:
-#    wrapper_test(model)
+if args.is_training:
+   wrapper_train(model)
+else:
+   wrapper_test(model)

@@ -187,7 +187,7 @@
       <paths name="yerui">
         <serverdata>
           <mappings>
-            <mapping deploy="/PycharmProject/predrann" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/PycharmProject/predrann_upload" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

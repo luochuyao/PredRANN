@@ -17,10 +17,6 @@ class Model(object):
             'predrann_t':predict.PredRANN_T,
             'predrann':predict.PredRANN,
             'predrnn':predict.PredRNN,
-            # 'rap_net':predict.RAP_Net,
-            # 'rap_cell':predict.RAP_Cell,
-            # 'rap_cell_h':predict.RAP_Cell_h,
-            # 'rap_cell_x':predict.RAP_Cell_x,
         }
 
         if configs.model_name in networks_map:
@@ -54,7 +50,8 @@ class Model(object):
     def train(self, frames, mask):
         frames_tensor = torch.FloatTensor(frames).cuda()
         mask_tensor = torch.FloatTensor(mask).cuda()
-
+        frames_tensor = frames_tensor.permute((0,1,4,2,3)).contiguous()
+        mask_tensor = mask_tensor.permute((0,1,4,2,3)).contiguous()
         self.optimizer.zero_grad()
         next_frames = self.network(frames_tensor, mask_tensor)
         loss = self.MSE_criterion(next_frames, frames_tensor[:, 1:])\
